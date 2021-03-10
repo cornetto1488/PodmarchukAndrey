@@ -5,11 +5,14 @@ using namespace std;
 
 const int MAX_N = 100;
 
-double factorial(double i) {
-    if (i == 0.0) {
+double factorial(double i)
+{
+    if (i == 0.0)
+    {
         return 1.0;
     }
-    else {
+    else
+    {
         double result = i * factorial(i - 1.0);
         return result;
     }
@@ -28,10 +31,31 @@ double myExp(double x)
     }
     return result;
 }
-
-int main() {
-    double x;
-    cout << "Enter x: ";
-    cin >> x;
+double getValue()
+{
+    while (true)
+    {
+        cout << "Enter x: ";
+        double x;
+        cin >> x;
+        if (cin.fail())
+        {
+            if (cin.fail())
+            {
+                cin.clear();
+                cin.ignore(32767, '\n');
+                cout << "Input error. You need to enter a number, not a letter.\n \n";
+            }
+        }
+        else
+        {
+            cin.ignore(32767, '\n');
+            return x;
+        }
+    }
+}
+int main()
+{
+    double x = getValue();
     cout << "Exp = " <<myExp(x);
 }
