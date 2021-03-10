@@ -22,7 +22,6 @@ double factorial(double i)
 double myExp(double x)
 {
     double result = 0;
-    double i = 1;
     double add;
     for (int i = 0; i < MAX_N; i++)
     {
