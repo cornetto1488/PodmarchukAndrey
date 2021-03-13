@@ -3,25 +3,47 @@
 
 using namespace std;
 
+int getInt();
+
 int main()
 {
-    int i;
-    double d;
-    double a[3];
-    double b[3];
-    double res = 0;
-    double f, h, alpha, y;
-    cout << "a= ";
-    for (i = 0; i < 3; i++)
-        cin >> a[i];
-    cout << "b= ";
-    for (i = 0; i < 3; i++)
-        cin >> b[i];
-    for (i = 0; i < 3; i++)
-        res += a[i] * b[i];
-    d = res;
-    f = sqrt(a[0] * a[0] + a[1] * a[1] + a[2] * a[2]);
-    h = sqrt(b[0] * b[0] + b[1] * b[1] + b[2] * b[2]);
-    y = acos(d / (f * h));
-    cout << "alpha= " << y;
+	double a[3] = { 0,0,0 };
+	double b[3] = { 0,0,0 };
+	double scalarProduct = 0;
+	double lengthVectorA = 0;
+	double lengthVectorB = 0;
+	double alpha = 0;
+	cout << "Type your a:  ";
+	for (int i = 0; i < 3; i++)
+		a[i] = getInt();
+	cout << "Type your b:  ";
+	for (int i = 0; i < 3; i++)
+		b[i] = getInt();
+	for (int i = 0; i < 3; i++)
+		scalarProduct += a[i] * b[i];
+	for (int i = 0; i < 3; i++) {
+		lengthVectorA += a[i] * a[i];
+		lengthVectorB += b[i] * b[i];
+	}
+	lengthVectorA = sqrt(lengthVectorA);
+	lengthVectorB = sqrt(lengthVectorB);
+	alpha = acos(scalarProduct / (lengthVectorA * lengthVectorB));
+	cout << "Your alpha:  " << alpha;
+}
+
+int getInt() {
+	while (true) {
+		int number;
+		cin >> number;
+
+		if (cin.fail()) {
+			cin.clear();
+			cin.ignore(32767, '\n');
+			cout << "Do input again." << endl;
+		}
+		else {
+			//cin.ignore(32767, '\n');
+			return number;
+		}
+	}
 }
