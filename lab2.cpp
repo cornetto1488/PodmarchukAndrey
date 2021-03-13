@@ -5,36 +5,26 @@ using namespace std;
 
 const int MAX_N = 100;
 
-double factorial(double i)
-{
-    if (i == 0.0)
-    {
-        return 1.0;
-    }
-    else
-    {
-        double result = i * factorial(i - 1.0);
-        return result;
-    }
-}
 
 
-double myExp(double x)
+double myExp(double x, double eps)
 {
-    double result = 0;
-    double add;
-    for (int i = 0; i < MAX_N; i++)
-    {
-        add = pow(x, i) / factorial(i);
-        result += add;
-    }
-    return result;
+      double result = 0;
+      int i = 1;
+      double d= 1;
+      while(fabs(d) > eps)
+      {
+            result += d;
+            d = d*x/i;
+            i++;
+      }
+      return result;
 }
 double getValue()
 {
     while (true)
     {
-        cout << "Enter x: ";
+        cout << "Enter your x: ";
         double x;
         cin >> x;
         if (cin.fail())
@@ -56,5 +46,5 @@ double getValue()
 int main()
 {
     double x = getValue();
-    cout << "Exp = " <<myExp(x);
+    cout << "Your exponent: " <<myExp(x, 0.01);
 }
