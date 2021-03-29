@@ -1,5 +1,6 @@
-﻿#include <iostream>
+#include <iostream>
 #include <string>
+#include <cstring>
 #include <algorithm>
 
 using namespace std;
@@ -10,9 +11,7 @@ int main()
 
     char codeLine[] = "this is code line";
     char codeSymbols[26];
-    const char Alphabet[26] = { 'a', 'b', 'c', 'd', 'e', 'f',
-        'g', 'h', 'i',' j', 'k', 'l', 'm', 'n', 'o', 'p', 'q',
-        'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
+    const char Alphabet[27] = "abcdefghijklmnopqrstuvwxyz";
     int position = 0;
 
     for (int i = 0; i < strlen(codeLine); i++) {
@@ -58,9 +57,11 @@ int main()
 
     cout << "Enter text to encoder: ";
 
+
     getline(cin, textInput);
-    transform(textInput.begin(), textInput.end(), textInput.begin(), tolower);
     int lenght = textInput.length();
+    for(int i = 0; i < lenght; i++)
+    textInput[i] = tolower(textInput[i]);
     const char* textC = textInput.c_str();
 
     for (int i = 0; i < lenght; i++) {
