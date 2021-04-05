@@ -3,24 +3,28 @@
 
 using namespace std;
 
-class obj {
-public:
+struct obj {
 	string name;
 	obj* pointer1, * pointer2;
-	obj(string name) {
-		this->name = name;
-	}
 	void writePoiters() {
+		if (pointer1 && pointer2)
 			cout << "I " << name << " have pointer to " << pointer1->name << endl << "I " << name << " have pointer to " << pointer2->name << endl;
-	}
-	void writeNoPointers() {
-		cout << "I " << name << " dont have any pointers." << endl;
+		else if (pointer1 && !pointer2)
+			cout << "I " << name << " have pointer to " << pointer1->name << endl;
+		else if (!pointer1 && pointer2)
+			cout << "I " << name << " have pointer to " << pointer2->name << endl;
+		else
+			cout << "I " << name << " dont have any pointers." << endl;
 	}
 };
 
 int main() {
-	obj object1("obj1"), object2("obj2"), object3("obj3"),
-		object4("obj4"), object5("obj5"), object6("obj6");
+	obj object1 = { "obj1" },
+		object2 = { "obj2" },
+		object3 = { "obj3" },
+		object4 = { "obj4" },
+		object5 = { "obj5" },
+		object6 = { "obj6" };
 	object1.pointer1 = &object2;
 	object1.pointer2 = &object3;
 	object2.pointer1 = &object3;
@@ -36,5 +40,5 @@ int main() {
 	object3.writePoiters();
 	object4.writePoiters();
 	object5.writePoiters();
-	object6.writeNoPointers();
+	object6.writePoiters();
 }
